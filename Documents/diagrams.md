@@ -5,8 +5,16 @@
     2. **Контекст**  
       Список вимог, перелічених у цьому документі, є основою технічного завдання на розробку системи експертної оцінки ExpSys.
 2. **Діаграма прецендентів**  
-![Alt text](diagrams/use_case.png)
-// 4 діаграми із use_case.vsd
+    1. **Повна діаграма**
+    ![Alt text](diagrams/use_case.png)
+    2. **Гість**
+    ![Alt text](diagrams/use_case_guest.png)
+    3. **Експерт**
+    ![Alt text](diagrams/use_case_expert.png)
+    4. **Замовник**
+    ![Alt text](diagrams/use_case_customer.png)
+    5. **Модератор**
+    ![Alt text](diagrams/use_case_moderator.png)
 3. **Діаграма бізнес-об'єктів**  
 ![Alt text](diagrams/business_object_model.png)
 4. **Діаграма класів**
