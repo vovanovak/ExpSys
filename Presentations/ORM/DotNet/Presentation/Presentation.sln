@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.CodeFirst", "Presentation.CodeFirst\Presentation.CodeFirst.csproj", "{668524B5-2276-4D74-88E6-0801142275E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.DatabaseFirst", "Presentation.DatabaseFirst\Presentation.DatabaseFirst.csproj", "{B3813DF3-D14A-45C7-9688-8370B0F1B8BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.Interfaces", "Presentation.Interfaces\Presentation.Interfaces.csproj", "{D13401CF-A113-41EE-B64D-02866B1FB690}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{668524B5-2276-4D74-88E6-0801142275E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{668524B5-2276-4D74-88E6-0801142275E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{668524B5-2276-4D74-88E6-0801142275E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3813DF3-D14A-45C7-9688-8370B0F1B8BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3813DF3-D14A-45C7-9688-8370B0F1B8BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3813DF3-D14A-45C7-9688-8370B0F1B8BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3813DF3-D14A-45C7-9688-8370B0F1B8BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D13401CF-A113-41EE-B64D-02866B1FB690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D13401CF-A113-41EE-B64D-02866B1FB690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D13401CF-A113-41EE-B64D-02866B1FB690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D13401CF-A113-41EE-B64D-02866B1FB690}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
