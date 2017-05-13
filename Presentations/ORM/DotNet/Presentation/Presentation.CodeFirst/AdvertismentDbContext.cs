@@ -16,7 +16,7 @@ namespace Presentation.CodeFirst
         public DbSet<ProductDetails> ProductDetails { get; set; }
         public DbSet<ProductReview> ProductReviews { get; set; }
         public DbSet<User> Users { get; set; }
-        public AdvertismentDbContext() : base("novakConnectionString")
+        public AdvertismentDbContext() : base("novakCodeFirstConnectionString")
         {
 
         }

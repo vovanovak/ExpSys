@@ -16,7 +16,7 @@ namespace Presentation.DatabaseFirst
     public partial class PresentationEntities : DbContext
     {
         public PresentationEntities()
-            : base("name=PresentationEntities")
+            : base("name=novakDatabaseFirstConnectionString")
         {
         }
     

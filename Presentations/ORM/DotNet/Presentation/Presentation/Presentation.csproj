@@ -64,6 +64,14 @@
       <Project>{668524b5-2276-4d74-88e6-0801142275e0}</Project>
       <Name>Presentation.CodeFirst</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Presentation.DatabaseFirst\Presentation.DatabaseFirst.csproj">
+      <Project>{B3813DF3-D14A-45C7-9688-8370B0F1B8BE}</Project>
+      <Name>Presentation.DatabaseFirst</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Presentation.Interfaces\Presentation.Interfaces.csproj">
+      <Project>{D13401CF-A113-41EE-B64D-02866B1FB690}</Project>
+      <Name>Presentation.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

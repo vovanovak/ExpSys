@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AdvertismentDbContext.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="CodeFirstPresenter.cs" />
     <Compile Include="DeliveryType.cs" />
     <Compile Include="Migrations\201705111242292_InitMigration1.cs" />
     <Compile Include="Migrations\201705111242292_InitMigration1.Designer.cs">

@@ -1,4 +1,6 @@
 ﻿using Presentation.CodeFirst;
+using Presentation.DatabaseFirst;
+using Presentation.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,44 +12,53 @@ namespace Presentation
 {
     class Program
     {
+        private static Stopwatch watch = new Stopwatch();
+        private static readonly string separator = new string('-', 25);
         static void Main(string[] args)
         {
-            using (var ctx = new AdvertismentDbContext())
+            TestCodeFirst();
+            TestDatabaseFirst();
+        }
+
+        public async static Task MeasureTime(Stopwatch watch, Func<Task> action)
+        {
+            watch.Restart();
+            await action();
+            watch.Stop();
+            Console.WriteLine($"{action.Method.Name} Execution Time: {watch.ElapsedMilliseconds}");
+        }
+
+        public static async Task Test(IPresentable presenter)
+        {
+            await MeasureTime(watch, presenter.ClearTable);
+            await MeasureTime(watch, presenter.Add10000Entities);
+            await MeasureTime(watch, presenter.Update1000Entities);
+            await MeasureTime(watch, presenter.Delete1000Entities);
+            await MeasureTime(watch, presenter.WhereExample);
+        }   
+        
+        public static void TestCodeFirst()
+        {
+            Console.WriteLine("EF Code First test: ");
+
+            using (var presenter = new CodeFirstPresenter())
             {
-                //var categories = new string[] { "Clothes", "Food", "Hardware", "Phones", "Notebooks" };
-                //foreach(var category in categories)
-                //{
-                //    ctx.Categories.Add(new Category() { Name = category });
-                //}
-                //ctx.SaveChanges();
-                
-                //Clear
-                var categories = ctx.Categories.ToArray();
-                ctx.Categories.RemoveRange(categories);
-                ctx.SaveChanges();
-
-                var listCategoryNames = new List<string>();
-
-                for (int i = 0; i < 100; i++)
-                {
-                    listCategoryNames.Add("category" + i);
-                }
-
-                Stopwatch watch = new Stopwatch();
-                watch.Start();
-
-                ctx.Categories.AddRange(listCategoryNames.Select(name => new Category() { Name = name }));
-                //foreach(var category in listCategoryNames)
-                //{
-                //    ctx.Categories.Add(new Category { Name = category });
-                //}
-                ctx.SaveChanges();
-
-                watch.Stop();
-
-
-                Console.WriteLine("Elapsed: " + watch.ElapsedMilliseconds);
+                Test(presenter).Wait();
             }
+
+            Console.WriteLine(separator);
+        }
+
+        public static void TestDatabaseFirst()
+        {
+            Console.WriteLine("EF Database First test: ");
+
+            using (var presenter = new DatabaseFirstPresenter())
+            {
+                Test(presenter).Wait();
+            }
+
+            Console.WriteLine(separator);
         }
     }
 }

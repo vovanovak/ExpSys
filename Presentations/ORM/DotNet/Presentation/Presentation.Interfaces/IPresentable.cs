@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Presentation.Interfaces
 {
-    public interface IPresentable
+    public interface IPresentable: IDisposable
     {
-        void Add10000Entities();
-        void Delete1000Entities();
-        void Update1000Entities();
-        void Where();
+        Task Add10000Entities();
+        Task Delete1000Entities();
+        Task Update1000Entities();
+        Task WhereExample();
+        Task ClearTable();
     }
 }
