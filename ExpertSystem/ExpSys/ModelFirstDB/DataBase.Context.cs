@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Presentation.ModelFirst
+namespace ModelFirstDB
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ModelContainer : DbContext
+    public partial class DataBaseContainer : DbContext
     {
-        public ModelContainer()
-            : base("name=ModelContainer")
+        public DataBaseContainer()
+            : base("name=DataBaseContainer")
         {
         }
     
@@ -25,11 +25,12 @@ namespace Presentation.ModelFirst
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<ProductDetails> ProductDetails { get; set; }
-        public virtual DbSet<ProductReview> ProductReviews { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Profile> ProfileSet { get; set; }
+        public virtual DbSet<UserCategory> UserCategorySet { get; set; }
+        public virtual DbSet<UserRigths> UserRigthsSet { get; set; }
+        public virtual DbSet<Operation> OperationSet { get; set; }
+        public virtual DbSet<Action> ActionSet { get; set; }
+        public virtual DbSet<Asessement> AsessementSet { get; set; }
+        public virtual DbSet<Invitation> InvitationSet { get; set; }
     }
 }

@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DataBase.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DataBaseStoreContainer">
+    <EntitySet Name="ProfileSet" EntityType="DataBase.Store.ProfileSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserCategorySet" EntityType="DataBase.Store.UserCategorySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserRigthsSet" EntityType="DataBase.Store.UserRigthsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OperationSet" EntityType="DataBase.Store.OperationSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ActionSet" EntityType="DataBase.Store.ActionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AsessementSet" EntityType="DataBase.Store.AsessementSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InvitationSet" EntityType="DataBase.Store.InvitationSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ProfileUserRigths" Association="DataBase.Store.ProfileUserRigths">
+      <End Role="Profile" EntitySet="ProfileSet" />
+      <End Role="UserRigths" EntitySet="UserRigthsSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProfileUserCategory" Association="DataBase.Store.ProfileUserCategory">
+      <End Role="Profile" EntitySet="ProfileSet" />
+      <End Role="UserCategory" EntitySet="UserCategorySet" />
+    </AssociationSet>
+    <AssociationSet Name="OperationUserRigths" Association="DataBase.Store.OperationUserRigths">
+      <End Role="Operation" EntitySet="OperationSet" />
+      <End Role="UserRigths" EntitySet="UserRigthsSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserCategoryUserRigths" Association="DataBase.Store.UserCategoryUserRigths">
+      <End Role="UserCategory" EntitySet="UserCategorySet" />
+      <End Role="UserRigths" EntitySet="UserRigthsSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProfileEntity1" Association="DataBase.Store.ProfileEntity1">
+      <End Role="Profile" EntitySet="ProfileSet" />
+      <End Role="Entity1" EntitySet="ActionSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProfileInvitation" Association="DataBase.Store.ProfileInvitation">
+      <End Role="Profile" EntitySet="ProfileSet" />
+      <End Role="Invitation" EntitySet="InvitationSet" />
+    </AssociationSet>
+    <AssociationSet Name="AsessementInvitation" Association="DataBase.Store.AsessementInvitation">
+      <End Role="Asessement" EntitySet="AsessementSet" />
+      <End Role="Invitation" EntitySet="InvitationSet" />
+    </AssociationSet>
+    <AssociationSet Name="AsessementAction" Association="DataBase.Store.AsessementAction">
+      <End Role="Asessement" EntitySet="AsessementSet" />
+      <End Role="Action" EntitySet="ActionSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ProfileSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserCategorySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Profile_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="UserRigthsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Profile_Id" Type="int" Nullable="true" />
+    <Property Name="Operation_Id" Type="int" Nullable="true" />
+    <Property Name="UserCategory_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OperationSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="typeOfObject" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActionSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Profile_Id" Type="int" Nullable="false" />
+    <Property Name="Asessement_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="AsessementSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvitationSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Profile_Id" Type="int" Nullable="false" />
+    <Property Name="Asessement_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ProfileUserRigths">
+    <End Role="Profile" Type="DataBase.Store.ProfileSet" Multiplicity="0..1" />
+    <End Role="UserRigths" Type="DataBase.Store.UserRigthsSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRigths">
+        <PropertyRef Name="Profile_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfileUserCategory">
+    <End Role="Profile" Type="DataBase.Store.ProfileSet" Multiplicity="0..1" />
+    <End Role="UserCategory" Type="DataBase.Store.UserCategorySet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserCategory">
+        <PropertyRef Name="Profile_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OperationUserRigths">
+    <End Role="Operation" Type="DataBase.Store.OperationSet" Multiplicity="0..1" />
+    <End Role="UserRigths" Type="DataBase.Store.UserRigthsSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRigths">
+        <PropertyRef Name="Operation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserCategoryUserRigths">
+    <End Role="UserCategory" Type="DataBase.Store.UserCategorySet" Multiplicity="1" />
+    <End Role="UserRigths" Type="DataBase.Store.UserRigthsSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRigths">
+        <PropertyRef Name="UserCategory_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfileEntity1">
+    <End Role="Profile" Type="DataBase.Store.ProfileSet" Multiplicity="1" />
+    <End Role="Entity1" Type="DataBase.Store.ActionSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Entity1">
+        <PropertyRef Name="Profile_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfileInvitation">
+    <End Role="Profile" Type="DataBase.Store.ProfileSet" Multiplicity="1" />
+    <End Role="Invitation" Type="DataBase.Store.InvitationSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invitation">
+        <PropertyRef Name="Profile_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AsessementInvitation">
+    <End Role="Asessement" Type="DataBase.Store.AsessementSet" Multiplicity="1" />
+    <End Role="Invitation" Type="DataBase.Store.InvitationSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asessement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invitation">
+        <PropertyRef Name="Asessement_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AsessementAction">
+    <End Role="Asessement" Type="DataBase.Store.AsessementSet" Multiplicity="0..1" />
+    <End Role="Action" Type="DataBase.Store.ActionSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asessement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Action">
+        <PropertyRef Name="Asessement_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DataBase" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DataBaseContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ProfileSet" EntityType="DataBase.Profile" />
+          <EntitySet Name="UserCategorySet" EntityType="DataBase.UserCategory" />
+          <EntitySet Name="UserRigthsSet" EntityType="DataBase.UserRigths" />
+          <EntitySet Name="OperationSet" EntityType="DataBase.Operation" />
+          <AssociationSet Name="ProfileUserRigths" Association="DataBase.ProfileUserRigths">
+            <End Role="Profile" EntitySet="ProfileSet" />
+            <End Role="UserRigths" EntitySet="UserRigthsSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProfileUserCategory" Association="DataBase.ProfileUserCategory">
+            <End Role="Profile" EntitySet="ProfileSet" />
+            <End Role="UserCategory" EntitySet="UserCategorySet" />
+          </AssociationSet>
+          <AssociationSet Name="OperationUserRigths" Association="DataBase.OperationUserRigths">
+            <End Role="Operation" EntitySet="OperationSet" />
+            <End Role="UserRigths" EntitySet="UserRigthsSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserCategoryUserRigths" Association="DataBase.UserCategoryUserRigths">
+            <End Role="UserCategory" EntitySet="UserCategorySet" />
+            <End Role="UserRigths" EntitySet="UserRigthsSet" />
+          </AssociationSet>
+          <EntitySet Name="ActionSet" EntityType="DataBase.Action" />
+          <EntitySet Name="AsessementSet" EntityType="DataBase.Asessement" />
+          <EntitySet Name="InvitationSet" EntityType="DataBase.Invitation" />
+          <AssociationSet Name="ProfileEntity1" Association="DataBase.ProfileEntity1">
+            <End Role="Profile" EntitySet="ProfileSet" />
+            <End Role="Entity1" EntitySet="ActionSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProfileInvitation" Association="DataBase.ProfileInvitation">
+            <End Role="Profile" EntitySet="ProfileSet" />
+            <End Role="Invitation" EntitySet="InvitationSet" />
+          </AssociationSet>
+          <AssociationSet Name="AsessementInvitation" Association="DataBase.AsessementInvitation">
+            <End Role="Asessement" EntitySet="AsessementSet" />
+            <End Role="Invitation" EntitySet="InvitationSet" />
+          </AssociationSet>
+          <AssociationSet Name="AsessementAction" Association="DataBase.AsessementAction">
+            <End Role="Asessement" EntitySet="AsessementSet" />
+            <End Role="Action" EntitySet="ActionSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" Nullable="false" />
+          <Property Name="password" Type="String" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" />
+          <NavigationProperty Name="UserRigths" Relationship="DataBase.ProfileUserRigths" FromRole="Profile" ToRole="UserRigths" />
+          <NavigationProperty Name="UserCategory" Relationship="DataBase.ProfileUserCategory" FromRole="Profile" ToRole="UserCategory" />
+          <NavigationProperty Name="Entity1" Relationship="DataBase.ProfileEntity1" FromRole="Profile" ToRole="Entity1" />
+          <NavigationProperty Name="Invitation" Relationship="DataBase.ProfileInvitation" FromRole="Profile" ToRole="Invitation" />
+        </EntityType>
+        <EntityType Name="UserCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Profile" Relationship="DataBase.ProfileUserCategory" FromRole="UserCategory" ToRole="Profile" />
+          <NavigationProperty Name="UserRigths" Relationship="DataBase.UserCategoryUserRigths" FromRole="UserCategory" ToRole="UserRigths" />
+        </EntityType>
+        <EntityType Name="UserRigths">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Profile" Relationship="DataBase.ProfileUserRigths" FromRole="UserRigths" ToRole="Profile" />
+          <NavigationProperty Name="Operation" Relationship="DataBase.OperationUserRigths" FromRole="UserRigths" ToRole="Operation" />
+          <NavigationProperty Name="UserCategory" Relationship="DataBase.UserCategoryUserRigths" FromRole="UserRigths" ToRole="UserCategory" />
+        </EntityType>
+        <EntityType Name="Operation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="typeOfObject" Type="String" Nullable="false" />
+          <NavigationProperty Name="UserRigths" Relationship="DataBase.OperationUserRigths" FromRole="Operation" ToRole="UserRigths" />
+        </EntityType>
+        <Association Name="ProfileUserRigths">
+          <End Type="DataBase.Profile" Role="Profile" Multiplicity="0..1" />
+          <End Type="DataBase.UserRigths" Role="UserRigths" Multiplicity="*" />
+        </Association>
+        <Association Name="ProfileUserCategory">
+          <End Type="DataBase.Profile" Role="Profile" Multiplicity="0..1" />
+          <End Type="DataBase.UserCategory" Role="UserCategory" Multiplicity="*" />
+        </Association>
+        <Association Name="OperationUserRigths">
+          <End Type="DataBase.Operation" Role="Operation" Multiplicity="0..1" />
+          <End Type="DataBase.UserRigths" Role="UserRigths" Multiplicity="*" />
+        </Association>
+        <Association Name="UserCategoryUserRigths">
+          <End Type="DataBase.UserCategory" Role="UserCategory" Multiplicity="1" />
+          <End Type="DataBase.UserRigths" Role="UserRigths" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Profile" Relationship="DataBase.ProfileEntity1" FromRole="Entity1" ToRole="Profile" />
+          <NavigationProperty Name="Asessement" Relationship="DataBase.AsessementAction" FromRole="Action" ToRole="Asessement" />
+        </EntityType>
+        <EntityType Name="Asessement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Invitation" Relationship="DataBase.AsessementInvitation" FromRole="Asessement" ToRole="Invitation" />
+          <NavigationProperty Name="Action" Relationship="DataBase.AsessementAction" FromRole="Asessement" ToRole="Action" />
+        </EntityType>
+        <EntityType Name="Invitation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Profile" Relationship="DataBase.ProfileInvitation" FromRole="Invitation" ToRole="Profile" />
+          <NavigationProperty Name="Asessement" Relationship="DataBase.AsessementInvitation" FromRole="Invitation" ToRole="Asessement" />
+        </EntityType>
+        <Association Name="ProfileEntity1">
+          <End Type="DataBase.Profile" Role="Profile" Multiplicity="1" />
+          <End Type="DataBase.Action" Role="Entity1" Multiplicity="*" />
+        </Association>
+        <Association Name="ProfileInvitation">
+          <End Type="DataBase.Profile" Role="Profile" Multiplicity="1" />
+          <End Type="DataBase.Invitation" Role="Invitation" Multiplicity="*" />
+        </Association>
+        <Association Name="AsessementInvitation">
+          <End Type="DataBase.Asessement" Role="Asessement" Multiplicity="1" />
+          <End Type="DataBase.Invitation" Role="Invitation" Multiplicity="*" />
+        </Association>
+        <Association Name="AsessementAction">
+          <End Type="DataBase.Asessement" Role="Asessement" Multiplicity="0..1" />
+          <End Type="DataBase.Action" Role="Action" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DataBaseStoreContainer" CdmEntityContainer="DataBaseContainer">
+    <EntitySetMapping Name="ProfileSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBase.Profile)">
+        <MappingFragment StoreEntitySet="ProfileSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserCategorySet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBase.UserCategory)">
+        <MappingFragment StoreEntitySet="UserCategorySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRigthsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBase.UserRigths)">
+        <MappingFragment StoreEntitySet="UserRigthsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBase.Operation)">
+        <MappingFragment StoreEntitySet="OperationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="typeOfObject" ColumnName="typeOfObject" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBase.Action)">
+        <MappingFragment StoreEntitySet="ActionSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AsessementSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBase.Asessement)">
+        <MappingFragment StoreEntitySet="AsessementSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvitationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBase.Invitation)">
+        <MappingFragment StoreEntitySet="InvitationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ProfileUserRigths" TypeName="DataBase.ProfileUserRigths" StoreEntitySet="UserRigthsSet">
+      <EndProperty Name="Profile">
+        <ScalarProperty Name="Id" ColumnName="Profile_Id" />
+      </EndProperty>
+      <EndProperty Name="UserRigths">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Profile_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProfileUserCategory" TypeName="DataBase.ProfileUserCategory" StoreEntitySet="UserCategorySet">
+      <EndProperty Name="Profile">
+        <ScalarProperty Name="Id" ColumnName="Profile_Id" />
+      </EndProperty>
+      <EndProperty Name="UserCategory">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Profile_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OperationUserRigths" TypeName="DataBase.OperationUserRigths" StoreEntitySet="UserRigthsSet">
+      <EndProperty Name="Operation">
+        <ScalarProperty Name="Id" ColumnName="Operation_Id" />
+      </EndProperty>
+      <EndProperty Name="UserRigths">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Operation_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserCategoryUserRigths" TypeName="DataBase.UserCategoryUserRigths" StoreEntitySet="UserRigthsSet">
+      <EndProperty Name="UserCategory">
+        <ScalarProperty Name="Id" ColumnName="UserCategory_Id" />
+      </EndProperty>
+      <EndProperty Name="UserRigths">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProfileEntity1" TypeName="DataBase.ProfileEntity1" StoreEntitySet="ActionSet">
+      <EndProperty Name="Profile">
+        <ScalarProperty Name="Id" ColumnName="Profile_Id" />
+      </EndProperty>
+      <EndProperty Name="Entity1">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProfileInvitation" TypeName="DataBase.ProfileInvitation" StoreEntitySet="InvitationSet">
+      <EndProperty Name="Profile">
+        <ScalarProperty Name="Id" ColumnName="Profile_Id" />
+      </EndProperty>
+      <EndProperty Name="Invitation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AsessementInvitation" TypeName="DataBase.AsessementInvitation" StoreEntitySet="InvitationSet">
+      <EndProperty Name="Asessement">
+        <ScalarProperty Name="Id" ColumnName="Asessement_Id" />
+      </EndProperty>
+      <EndProperty Name="Invitation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AsessementAction" TypeName="DataBase.AsessementAction" StoreEntitySet="ActionSet">
+      <EndProperty Name="Asessement">
+        <ScalarProperty Name="Id" ColumnName="Asessement_Id" />
+      </EndProperty>
+      <EndProperty Name="Action">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Asessement_Id" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

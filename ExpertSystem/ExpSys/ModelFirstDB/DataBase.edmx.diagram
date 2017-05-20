@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1511ae7751a64aa9b2504d716759075a" Name="Diagram1" ZoomLevel="106" >
+        <EntityTypeShape EntityType="DataBase.Profile" Width="1.5" PointX="6.5" PointY="3.125" />
+        <EntityTypeShape EntityType="DataBase.UserCategory" Width="1.5" PointX="9.125" PointY="3.875" />
+        <EntityTypeShape EntityType="DataBase.UserRigths" Width="1.5" PointX="9.125" PointY="1" />
+        <EntityTypeShape EntityType="DataBase.Operation" Width="1.5" PointX="11.75" PointY="1" />
+        <AssociationConnector Association="DataBase.ProfileUserRigths" />
+        <AssociationConnector Association="DataBase.ProfileUserCategory" />
+        <AssociationConnector Association="DataBase.OperationUserRigths" />
+        <AssociationConnector Association="DataBase.UserCategoryUserRigths" />
+        <EntityTypeShape EntityType="DataBase.Action" Width="1.5" PointX="3.625" PointY="1" />
+        <EntityTypeShape EntityType="DataBase.Asessement" Width="1.5" PointX="3.625" PointY="3.125" />
+        <EntityTypeShape EntityType="DataBase.Invitation" Width="1.5" PointX="3.625" PointY="5.25" />
+        <AssociationConnector Association="DataBase.ProfileEntity1" />
+        <AssociationConnector Association="DataBase.ProfileInvitation" />
+        <AssociationConnector Association="DataBase.AsessementInvitation" />
+        <AssociationConnector Association="DataBase.AsessementAction" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
