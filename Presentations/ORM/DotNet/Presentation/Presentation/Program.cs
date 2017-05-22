@@ -1,5 +1,6 @@
 ﻿using Presentation.CodeFirst;
 using Presentation.DatabaseFirst;
+using Presentation.ModelFirst;
 using Presentation.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Presentation
         {
             TestCodeFirst();
             TestDatabaseFirst();
+            TestModelFirst();
         }
 
         public async static Task MeasureTime(Stopwatch watch, Func<Task> action)
@@ -54,6 +56,18 @@ namespace Presentation
             Console.WriteLine("EF Database First test: ");
 
             using (var presenter = new DatabaseFirstPresenter())
+            {
+                Test(presenter).Wait();
+            }
+
+            Console.WriteLine(separator);
+        }
+
+        public static void TestModelFirst()
+        {
+            Console.WriteLine("EF Model First test: ");
+
+            using (var presenter = new ModelFirstPresenter())
             {
                 Test(presenter).Wait();
             }
