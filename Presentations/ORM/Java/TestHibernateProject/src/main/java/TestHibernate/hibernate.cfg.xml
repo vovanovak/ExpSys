@@ -12,5 +12,8 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
         <mapping class="TestHibernate.EmployeeEntity"></mapping>
+        <mapping class="TestHibernate.DiscussionEntity"></mapping>
+        <mapping class="TestHibernate.OpinionEntity"></mapping>
+        <mapping class="TestHibernate.ExpertEntity"></mapping>
     </session-factory>
 </hibernate-configuration>
