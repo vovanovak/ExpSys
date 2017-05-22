@@ -8,9 +8,9 @@ namespace Presentation.Interfaces
 {
     public interface IPresentable: IDisposable
     {
-        Task Add10000Entities();
-        Task Delete1000Entities();
-        Task Update1000Entities();
+        Task Add20Entities();
+        Task DeleteEntity();
+        Task UpdateEntity();
         Task WhereExample();
         Task ClearTable();
     }

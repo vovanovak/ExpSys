@@ -16,9 +16,9 @@ namespace Presentation.CodeFirst
         {
             context = new AdvertismentDbContext();
         }
-        public async Task Add10000Entities()
+        public async Task Add20Entities()
         {
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 20; i++)
             {
                 context.Categories.Add(new Category() { Name = $"Category{i}" });
             }
@@ -26,7 +26,7 @@ namespace Presentation.CodeFirst
             await context.SaveChangesAsync();
         }
 
-        public async Task Delete1000Entities()
+        public async Task DeleteEntity()
         {
             var firstThousandCategories = context.Categories.Take(1000).ToArray();
             context.Categories.RemoveRange(firstThousandCategories);
@@ -39,19 +39,17 @@ namespace Presentation.CodeFirst
                 context.Dispose();
         }
 
-        public async Task Update1000Entities()
+        public async Task UpdateEntity()
         {
-            var firstThousandCategories = context.Categories.Take(1000).ToArray();
-            for (int i = 0; i < firstThousandCategories.Length; i++)
-            {
-                firstThousandCategories[i].Name += " modified " + i;
-            }
+            var firstCategory = context.Categories.FirstOrDefault();
+            firstCategory.Name += " modified 0";
             await context.SaveChangesAsync();
         }
 
         public async Task WhereExample()
         {
-            var foundCategories = await context.Categories.Where(c => c.Name.Contains("modified")).ToListAsync();
+            var foundCategories = await context.Categories
+                .Where(c => !c.Name.Contains("modified")).ToListAsync();
             foreach(var category in foundCategories)
             {
                 Console.WriteLine($"Category {category.Id}, {category.Name}");

@@ -31,9 +31,9 @@ namespace Presentation
         public static async Task Test(IPresentable presenter)
         {
             await MeasureTime(watch, presenter.ClearTable);
-            await MeasureTime(watch, presenter.Add10000Entities);
-            await MeasureTime(watch, presenter.Update1000Entities);
-            await MeasureTime(watch, presenter.Delete1000Entities);
+            await MeasureTime(watch, presenter.Add20Entities);
+            await MeasureTime(watch, presenter.UpdateEntity);
+            await MeasureTime(watch, presenter.DeleteEntity);
             await MeasureTime(watch, presenter.WhereExample);
         }   
         
