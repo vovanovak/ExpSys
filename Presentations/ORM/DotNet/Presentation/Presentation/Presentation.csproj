@@ -92,6 +92,10 @@
       <Project>{D13401CF-A113-41EE-B64D-02866B1FB690}</Project>
       <Name>Presentation.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Presentation.ModelFirst\Presentation.ModelFirst.csproj">
+      <Project>{b207fb42-2ee3-49d5-80a6-cdc920cd821d}</Project>
+      <Name>Presentation.ModelFirst</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

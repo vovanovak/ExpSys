@@ -13,9 +13,9 @@ namespace Presentation.ModelFirst
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PresentationEntities : DbContext
+    public partial class ModelContainer : DbContext
     {
-        public PresentationEntities()
+        public ModelContainer()
             : base("name=ModelContainer")
         {
         }
